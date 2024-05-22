@@ -1,42 +1,24 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { PageResult } from "@/typings";
 import Link from "next/link";
 import Filters from "./Filters";
-import { Select, SelectItem } from '@tremor/react'
 import { useRouter } from "next/navigation";
 
 type Props = {
   results: PageResult[];
   term: string;
-  sortBy: string;
-  onSortByChange: (sortBy: string) => void;
-};
-const SORT_BY_MAP = {
-  r: 'Default',
-  rv: 'By Review',
-  p: 'Price',
-  pd: 'Price (desc)',
 };
 
 const ResultsList: React.FC<Props> = ({ results, term }) => {
-  const [sortBy, setSortBy] = useState('r'); // State for sorting
   const router = useRouter();
-
-  const handleSortByChange = (value: string) => {
-    setSortBy(value); // Update sorting state
-  };
 
   const handleSearch = () => {
     // Constructing the URL with query parameters
     const params = new URLSearchParams();
-    // Include the sorting option in the query parameters
-    params.set('sort_by', sortBy);
     // Add other query parameters as needed
     router.push(`/search?${params.toString()}`);
   };
-
-
 
   return (
     <div className="grid grid-cols-4 gap-10">
@@ -51,9 +33,6 @@ const ResultsList: React.FC<Props> = ({ results, term }) => {
 
       {/* Main content */}
       <div className="md:col-span-3">
-        {/* Sort By filter */}
-        
-
         <div className="px-5 md:p-10 md:pt-0 space-y-5 flex-1">
           {results.map((pageResult, i) => (
             <div key={i} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
@@ -65,22 +44,8 @@ const ResultsList: React.FC<Props> = ({ results, term }) => {
                   <h2 className="text-xl font-semibold pl-2">Search Results for Page {i + 1}</h2>
                 </div>
                 <h3 className="font-extralight">Showing results for &quot;{decodeURIComponent(term)}&quot;</h3>
-                <div className="grid grid-cols-2 gap-2 p-4 md:grid-cols-4 max-w-lg md:max-w-none mx-auto items-center right-20 ">
-      {/* Add sorting dropdown */}
-      <Select
-              onValueChange={(value) => setSortBy(value)}
-              className="min-w-4"
-              placeholder="Sort By..."
-            >
-              {Object.entries(SORT_BY_MAP).map(([key, value]) => (
-                <SelectItem key={key} value={key}>
-                  {value}
-                </SelectItem>
-              ))}
-            </Select>
-    </div>
               </div>
-                
+
               {pageResult.content.results.organic.map((item) => (
                 <Link
                   key={item.pos}

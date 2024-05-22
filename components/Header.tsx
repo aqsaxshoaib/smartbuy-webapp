@@ -115,16 +115,17 @@ const Header: React.FC<Props> = () => {
     <p>{user ? `Hello, ${user.firstName}` : "Sign In"}</p>
     <p className="font-extrabold md:text-sm">Account & List</p>
     {isHovered && (
-      <div className="absolute top-full left-0 bg-white shadow-md p-4">
+      <div className="absolute top-full left-0 bg-white shadow-md p-4 min-w-px" 
+       >
         {user ? (
           <div className="flex flex-col space-y-4">
-            <div className="bg-yellow-400 font-extrabold text-white rounded-md px-4 py-2">
+            <div className="bg-yellow-400 font-extrabold text-black rounded-md px-4 py-2">
               <SignOutButton />
             </div>
           </div>
         ) : (
           <div className="flex flex-col space-y-4">
-            <div className="bg-yellow-400 font-extrabold text-center text-white rounded-md px-4 py-2">
+            <div className="bg-yellow-400 font-extrabold text-center text-black rounded-md px-4 py-2">
               <SignInButton />
             </div>
             <div>
