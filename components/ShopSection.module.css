@@ -1,0 +1,70 @@
+.shopSection {
+  margin-top: 150px;
+  justify-content: center;
+  position: relative; /* Set the positioning to relative */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  background-color: #e2e7e6;
+  top: -150px; /* Adjust the negative top value as needed */
+  z-index: 1; /* Set a higher z-index to place it over the banner */
+  bottom: 20px;
+}
+
+.box {
+  height: 420px;
+  width: 23%;
+  background-color: white;
+  padding: 20px 0px 15px;
+  margin-top: 15px;
+}
+
+.boxImg {
+  height: 300px;
+  width: 100%; /* Set a consistent width for the images on larger screens */
+  background-size: cover;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.boxContent {
+  margin-left: 1rem;
+  margin-right: 1em;
+}
+
+.boxContent p {
+  color: #087185;
+  max-width: 100%;
+  padding: 0 1rem;
+  margin: -5px 0;
+  font-weight: bold;
+}
+
+.boxContent h2 {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* Styles for small screens (mobile) */
+@media (max-width: 768px) {
+  .shopSection {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .box {
+    width: 60%; /* Adjust the width for mobile screens */
+    height: 300px; /* Set a consistent height for the boxes on mobile screens */
+    margin-right: 1rem;
+  }
+
+  .boxImg {
+    max-height: 200px; /* Set a maximum height for the images on mobile screens */
+    width: 100%; /* Set a consistent width for the images on mobile screens */
+  }
+
+  .box:last-child {
+    margin-right: 0;
+  }
+}
